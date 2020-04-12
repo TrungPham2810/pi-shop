@@ -10,14 +10,13 @@ class App extends Component {
     renderFrontRoutes = () => {
         let xhtml = null;
         xhtml = FRONTEND_ROUTES.map(route => {
-            return (<LayoutRoute
+            return(<LayoutRoute
                 key={route.path}
                 name={route.name}
                 path={route.path}
                 component={route.component}
                 exact={route.exact}
             />
-
             )
         })
         return xhtml;

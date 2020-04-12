@@ -15,12 +15,14 @@ import {
     faHeart,
     faUserCircle,
     faShoppingBag,
+    faTimes
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import logo from '../../../media/images/logo.png';
 import cn from 'classnames';
+import Menu from '../Menu';
 
 library.add(
     fab,
@@ -34,6 +36,7 @@ library.add(
     faHeart,
     faUserCircle,
     faShoppingBag,
+    faTimes
 );
 class Header extends Component {
     constructor(props) {
@@ -147,7 +150,7 @@ class Header extends Component {
                 <div className={classes.middleInner}>
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-2 col-sm-2 col-12">
+                            <div className="col-md-2 col-sm-2 col-12">
                                 {/* <!-- Logo --> */}
                                 <div className={classes.logo}>
                                     <Link to="/">
@@ -155,10 +158,12 @@ class Header extends Component {
                                     </Link>
                                 </div>
                                 {/* <!--/ End Logo --> */}
-                                <div className="mobile-nav"></div>
+                                <div className="mobile-nav">
+                                    
+                                </div>
                             </div>
 
-                            <div className="col-lg-8 col-sm-7 col-12">
+                            <div className="col-md-8 col-sm-7 col-12">
                                 <div className={classes.searchBarTop}>
                                     <div className={classes.searchBar}>
                                         <FormControl className={classes.searchType}>
@@ -183,6 +188,7 @@ class Header extends Component {
                                                 </option>
                                             </Select>
                                         </FormControl>
+                                        <div className={classes.search}>
                                         <form className={classes.searchForm}>
                                             <input
                                                 type="text"
@@ -192,7 +198,7 @@ class Header extends Component {
                                             <button
                                                 value="search"
                                                 type="submit"
-                                               
+
                                             >
                                                 <FontAwesomeIcon
                                                     className={
@@ -202,10 +208,12 @@ class Header extends Component {
                                                 />
                                             </button>
                                         </form>
+                                        </div>
+                                      
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-2 col-sm-3 col-12">
+                            <div className="col-md-2 col-sm-3 col-12">
                                 <div className={classes.rightBar}>
                                     {/* <!-- Search Form --> */}
                                     <div className={classes.singleBar}>
@@ -242,7 +250,7 @@ class Header extends Component {
                                             <span
                                                 className={classes.totalCount}
                                             >
-                                               3
+                                                3
                                             </span>
                                         </Link>
 
@@ -255,17 +263,19 @@ class Header extends Component {
                                             <ul className={classes.shoppingList}>
                                                 <li>
                                                     <div
-                                                        href="!#"
                                                         className={
                                                             classes.remove
                                                         }
                                                         title="Remove this item"
                                                     >
-                                                        <i className="fa fa-remove"></i>
+                                                        <FontAwesomeIcon
+                                                        
+                                                            icon="times"
+                                                        />
                                                     </div>
                                                     <Link
                                                         to="/"
-                                                        className="cart-img"
+                                                        className={classes.cartImg}
                                                         href="!#"
                                                     >
                                                         <img
@@ -320,6 +330,7 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
+                <Menu/>
             </header>
         );
     }

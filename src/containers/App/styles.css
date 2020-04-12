@@ -1,3 +1,24 @@
-li {
+*{
+    font-family: 'Poppins', sans-serif;
+}
+*{
+	margin: 0;
+    padding: 0;
     list-style: none;
+}
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+a:hover {
+    text-decoration: none;
+};
+
+.container{
+    max-width: 1170px;
+    width: 100%;
+}
+.navbar {
+    margin-bottom: 0; 
+     border: none;
 }

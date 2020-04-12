@@ -3,14 +3,16 @@ import { createMuiTheme } from "@material-ui/core/styles";
 const theme = createMuiTheme({
     background: {
         color: {
-            white: "#FFFF"
+            white: "#FFFF",
+        
         }
     },
     color: {
         primary: "#FF5252",
         secondary: "#4CAF50",
         error: "#FF5252",
-        icon: "#F7941D"
+        icon: "#F7941D",
+        main:"#F7941D",
     },
     typography: {
         fontFamily: "Roboto"
