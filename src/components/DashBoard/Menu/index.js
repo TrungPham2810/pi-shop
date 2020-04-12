@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core';
-import { Link, NavLink } from 'react-router-dom';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import styles from './styles';
-import Collapse from '@material-ui/core/Collapse';
+
 class Menu extends Component {
     render() {
         var { classes } = this.props;
