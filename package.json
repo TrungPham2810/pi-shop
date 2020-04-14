@@ -52,7 +52,9 @@
   },
   "lint-staged": {
     "*.{js,css}": [
-   
+      "npm run linting",
+      "npm run linting -- --fix",
+      "npm run format",
       "git add ."
     ]
   },
