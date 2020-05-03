@@ -20,7 +20,7 @@ import {
 import { Link } from "react-router-dom";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import logo from "../../../media/images/logo.png";
+import logo from "../../../assets/images/logo.png";
 import cn from "classnames";
 import Menu from "../Menu";
 

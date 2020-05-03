@@ -1,5 +1,5 @@
 import Home from "../containers/Home";
-import ProductList from "../containers/ProductList";
+import ProductListPage from "../containers/ProductListPage";
 import Service from "../containers/Service";
 import Cart from "../containers/Cart";
 import Checkout from "../containers/Checkout";
@@ -7,6 +7,25 @@ import Pages from "../containers/Pages";
 import BlogSidebar from "../containers/BlogSidebar";
 import ContactUs from "../containers/ContactUs";
 
+export const API_URL = "http://localhost/pishop/api";
+
+export const STATUS_CODE = {
+  SUCCESS: 200,
+  CREATED: 201,
+  UPDATED: 202,
+};
+
+export const OPTION_SORT_NUMBER = [
+  { value: 9, label: "09" },
+  { value: 15, label: "15" },
+  { value: 25, label: "25" },
+];
+
+export const OPTION_SORT_TYPE = [
+  { value: "name", label: "Name" },
+  { value: "price", label: "Price" },
+  { value: "size", label: "Size" },
+];
 export const FRONTEND_ROUTES = [
   {
     path: "/",
@@ -15,10 +34,10 @@ export const FRONTEND_ROUTES = [
     component: Home,
   },
   {
-    path: "/product",
+    path: "/product-list",
     name: "Product",
     exact: true,
-    component: ProductList,
+    component: ProductListPage,
   },
   {
     path: "/service",
@@ -30,7 +49,7 @@ export const FRONTEND_ROUTES = [
     path: "/shop-grid",
     name: "Shop Grid",
     exact: true,
-    component: ProductList,
+    component: ProductListPage,
   },
   {
     path: "/cart",
@@ -43,12 +62,6 @@ export const FRONTEND_ROUTES = [
     name: "Checkout",
     exact: true,
     component: Checkout,
-  },
-  {
-    path: "/shop",
-    name: "Shop",
-    exact: true,
-    component: ProductList,
   },
   {
     path: "/pages",

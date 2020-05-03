@@ -37,7 +37,7 @@ class MenuDesktop extends Component {
           <ul className={classes.dropdownContent}>
             <li>
               <NavLink
-                to="/product-list"
+                to="/shop-grid"
                 exact={true}
                 className={classes.childLink}
                 activeClassName={classes.menuLinkactive}

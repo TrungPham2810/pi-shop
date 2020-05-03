@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import BannerSlide from "../../components/BannerSlide/";
+import SmallBanner from "../../components/SmallBanner/";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 class Home extends Component {
@@ -9,6 +10,7 @@ class Home extends Component {
       <div>
         <div className={classes.banner}>
           <BannerSlide />
+          <SmallBanner className={classes.smallBanner} />
         </div>
       </div>
     );

@@ -1,7 +1,6 @@
 const styles = (theme) => ({
-  banner: {
-    // width: "100%",
-    // background: "red",
+  productArea: {
+    padding: "30px 0",
   },
 });
 
