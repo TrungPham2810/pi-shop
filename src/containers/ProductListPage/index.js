@@ -48,7 +48,7 @@ class ProductListPage extends Component {
     fetchListProduct(filter);
   };
   render() {
-    const { classes, listProduct, listCategory, statexx } = this.props;
+    const { classes, listProduct, listCategory, filter, statexx } = this.props;
     console.log(statexx);
     return (
       <div className={classes.productListPage}>
@@ -58,6 +58,7 @@ class ProductListPage extends Component {
             <div className="row">
               <SideBar
                 listCategory={listCategory}
+                filter={filter}
                 onClickFilter={this.handleFilter}
               />
               <ProductList listProduct={listProduct} />

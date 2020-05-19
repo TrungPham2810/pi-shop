@@ -31,15 +31,12 @@ class SideBar extends Component {
     onClickFilter(filterPrice);
   };
   renderListFilterPrice = () => {
-    const { filterCurrent } = this.props;
+    const { filter } = this.props;
 
     const html = FILTER_PRICE.map((price) => {
       let check = false;
 
-      if (
-        filterCurrent["price"] !== undefined &&
-        filterCurrent["price"] == price.value
-      ) {
+      if (filter["price"] !== undefined && filter["price"] == price.value) {
         check = true;
       }
       return (
@@ -147,15 +144,4 @@ class SideBar extends Component {
     );
   }
 }
-// export default withStyles(styles)(SideBar);
-const mapStateToProps = (state, ownProps) => {
-  return {
-    filterCurrent: state.productList.filter,
-  };
-};
-const mapDispatchToProps = (dispatch, props) => {
-  return {};
-};
-export default withStyles(styles)(
-  connect(mapStateToProps, mapDispatchToProps)(SideBar)
-);
+export default withStyles(styles)(SideBar);
