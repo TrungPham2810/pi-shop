@@ -15,6 +15,21 @@ export const STATUS_CODE = {
   UPDATED: 202,
 };
 
+export const FILTER_PRICE = [
+  {
+    value: "20-50",
+    label: "20$ - 50$",
+  },
+  {
+    value: "50-100",
+    label: "50$ - 100$",
+  },
+  {
+    value: "100-250",
+    label: "100$ - 250$",
+  },
+];
+
 export const OPTION_SORT_NUMBER = [
   { value: 9, label: "09" },
   { value: 15, label: "15" },

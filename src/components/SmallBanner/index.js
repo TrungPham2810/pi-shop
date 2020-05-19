@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import banner1 from "../../assets/images/Banner/banner1.jpg";
-import banner2 from "../../assets/images/Banner/banner2.jpg";
-import banner3 from "../../assets/images/Banner/banner3.jpg";
 import cn from "classnames";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";

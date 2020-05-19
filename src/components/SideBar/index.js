@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import InputRange from "react-input-range";
-import Button from "@material-ui/core/Button";
 import "react-input-range/lib/css/index.css";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { FILTER_PRICE } from "./../../constants";
+import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 class SideBar extends Component {
@@ -15,10 +16,67 @@ class SideBar extends Component {
       },
     };
   }
+
   changeRange = (event) => {
     // preventDefault();
     this.setState({ value: event });
   };
+  handleChangeFilterPrice = (event) => {
+    const { onClickFilter } = this.props;
+    var target = event.target;
+    var filterPrice = {
+      label: "price",
+      value: target.value,
+    };
+    onClickFilter(filterPrice);
+  };
+  renderListFilterPrice = () => {
+    const { filterCurrent } = this.props;
+
+    const html = FILTER_PRICE.map((price) => {
+      let check = false;
+
+      if (
+        filterCurrent["price"] !== undefined &&
+        filterCurrent["price"] == price.value
+      ) {
+        check = true;
+      }
+      return (
+        <li key={price.value}>
+          <label className="checkbox-inline">
+            <input
+              name="filter-price"
+              id="1"
+              checked={check}
+              type="checkbox"
+              value={price.value}
+              onChange={this.handleChangeFilterPrice}
+            />
+            {price.label}
+          </label>
+        </li>
+      );
+    });
+
+    return html;
+  };
+  renderListCategory = () => {
+    const { listCategory, onClickFilter } = this.props;
+    const html = listCategory.map((category) => {
+      var filter = {
+        label: "category",
+        value: category,
+      };
+      return (
+        <li onClick={() => onClickFilter(filter)} key={category.id}>
+          {category.name}
+        </li>
+      );
+    });
+    return html;
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -28,21 +86,7 @@ class SideBar extends Component {
           <div className={classes.singlewidget}>
             <h3 className={classes.titleFilter}>Categories</h3>
             <ul className={classes.categoryList}>
-              <li>
-                <Link to="/product-list?type=t-shirts">T-shirts</Link>
-              </li>
-              <li>
-                <Link to="/product-list?type=jacket">Jacket</Link>
-              </li>
-              <li>
-                <Link to="/product-list?type=jeans">Jean</Link>
-              </li>
-              <li>
-                <Link to="/product-list?type=sweatshirts">SweatShirts</Link>
-              </li>
-              <li>
-                <Link to="/product-list?type=kitwears">Kitwears</Link>
-              </li>
+              {this.renderListCategory()}
             </ul>
           </div>
           {/* <!--/ End Single Widget --> */}
@@ -73,24 +117,7 @@ class SideBar extends Component {
                         </form> */}
             {/* End filter by range price */}
             <ul className={classes.checkboxPriceList}>
-              <li>
-                <label className="checkbox-inline">
-                  <input name="filter-price" id="1" type="checkbox" />
-                  $20 - $50
-                </label>
-              </li>
-              <li>
-                <label className="checkbox-inline">
-                  <input name="filter-price" id="2" type="checkbox" />
-                  $50 - $100
-                </label>
-              </li>
-              <li>
-                <label className="checkbox-inline">
-                  <input name="filter-price" id="3" type="checkbox" />
-                  $100 - $250
-                </label>
-              </li>
+              {this.renderListFilterPrice()}
             </ul>
           </div>
           {/* <!--/ End Shop By Price --> */}
@@ -120,4 +147,15 @@ class SideBar extends Component {
     );
   }
 }
-export default withStyles(styles)(SideBar);
+// export default withStyles(styles)(SideBar);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    filterCurrent: state.productList.filter,
+  };
+};
+const mapDispatchToProps = (dispatch, props) => {
+  return {};
+};
+export default withStyles(styles)(
+  connect(mapStateToProps, mapDispatchToProps)(SideBar)
+);

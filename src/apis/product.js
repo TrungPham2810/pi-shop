@@ -4,12 +4,19 @@ import { API_URL } from "../constants/index";
 
 const url = "products";
 // http://localhost/pishop/api/products    GET
-export const getList = (params = {}) => {
+export const getList = (params = []) => {
   let urlParams = "";
   if (Object.keys(params).length > 0) {
-    urlParams = `?${qs.stringify(params)}`;
+    urlParams = `${qs.stringify(params)}`;
   }
-  return axiosService.get(`${API_URL}/${url}${urlParams}`);
+
+  // console.log(`${API_URL}/${url}/filter/${urlParams}`);
+  // console.log(params);
+
+  if (urlParams != "") {
+    return axiosService.get(`${API_URL}/${url}/filter/${urlParams}`);
+  }
+  return axiosService.get(`${API_URL}/${url}`);
 };
 // http://localhost/pishop/api/products      POST
 export const addProduct = (data) => {
