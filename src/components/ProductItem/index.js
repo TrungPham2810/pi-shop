@@ -3,6 +3,7 @@ import { faEye, faHeart, faChartBar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import logo from "../../assets/images/logo.png";
@@ -13,7 +14,7 @@ class ProductItem extends Component {
       <div className="col-lg-4 col-sm-6 col-12">
         <div className={classes.productItem}>
           <div className={classes.productImg}>
-            <a href="#">
+            <Link to="product-detail" product={product}>
               <img
                 className={classes.image}
                 src={require("../../assets/images/products/" +
@@ -21,7 +22,8 @@ class ProductItem extends Component {
                 alt="#"
               />
               {/* <img className="hover-img" src="https://via.placeholder.com/550x750" alt="#" /> */}
-            </a>
+            </Link>
+
             <div className={classes.buttonhead}>
               <div className={classes.addToCart}>
                 <div title="Add to cart" href="#">
@@ -87,6 +89,7 @@ class ProductItem extends Component {
           </div>
           <div className={classes.productContent}>
             <div className={classes.nameProduct}>
+              <Link to="product-detail"></Link>
               <a href="product-details.html">{product.name}</a>
             </div>
             <div className={classes.productPrice}>

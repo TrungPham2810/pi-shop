@@ -6,6 +6,7 @@ import styles from "./styles";
 class Home extends Component {
   render() {
     const { classes } = this.props;
+
     return (
       <div>
         <div className={classes.banner}>

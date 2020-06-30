@@ -6,6 +6,7 @@ import Checkout from "../containers/Checkout";
 import Pages from "../containers/Pages";
 import BlogSidebar from "../containers/BlogSidebar";
 import ContactUs from "../containers/ContactUs";
+import ProductDetail from "../containers/ProductDetail";
 
 export const API_URL = "http://localhost/pishop/api";
 
@@ -101,5 +102,11 @@ export const FRONTEND_ROUTES = [
     name: "Contact Us",
     exact: true,
     component: ContactUs,
+  },
+  {
+    path: "/product-detail",
+    name: "Product Detail",
+    exact: true,
+    component: ProductDetail,
   },
 ];
