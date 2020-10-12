@@ -4,13 +4,7 @@ import Footer from "./Footer";
 class DashBoard extends Component {
   render() {
     const { children } = this.props;
-    return (
-      <div>
-        <Header />
-        {children}
-        <Footer />
-      </div>
-    );
+    return <div>{children}</div>;
   }
 }
 export default DashBoard;

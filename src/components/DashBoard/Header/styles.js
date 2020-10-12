@@ -173,7 +173,8 @@ const styles = (theme) => ({
   iconCart: {
     "&:hover + div": {
       opacity: 1,
-      marginTop: 30,
+      marginTop: 0,
+      zIndex: 99,
     },
   },
   shopping: {
@@ -181,15 +182,19 @@ const styles = (theme) => ({
   },
   shoppingItem: {
     opacity: 0,
-
+    marginTop: 30,
     position: "absolute",
-    marginTop: 50,
     transition: "opacity 0.3s, margin-top 0.3s",
     width: 300,
     right: 0,
     padding: "20px 25px",
     background: "#92ef2b",
-    zIndex: 99,
+    zIndex: -1,
+    "&:hover": {
+      opacity: 1,
+      marginTop: 0,
+      zIndex: 99,
+    },
   },
   dropDowmCart: {
     display: "flex",
@@ -213,6 +218,10 @@ const styles = (theme) => ({
       fontSize: 13,
       color: "#333",
     },
+  },
+  image: {
+    width: 70,
+    height: 70,
   },
   cartImg: {
     float: "right",

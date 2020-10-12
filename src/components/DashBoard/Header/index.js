@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import * as cartActions from "../../../actions/cart";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -56,7 +59,9 @@ class Header extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, cartItem } = this.props;
+    var countCartItem = cartItem.length;
+
     const { searchType } = this.state;
     return (
       <header className={classes.header}>
@@ -198,41 +203,30 @@ class Header extends Component {
                       className={cn(classes.singleIcon, classes.iconCart)}
                     >
                       <FontAwesomeIcon icon="shopping-bag" />
-                      <span className={classes.totalCount}>3</span>
+                      {countCartItem ? (
+                        <span className={classes.totalCount}>
+                          {countCartItem}
+                        </span>
+                      ) : (
+                        ""
+                      )}
                     </Link>
 
                     {/* <!-- Shopping Item --> */}
                     <div className={classes.shoppingItem}>
                       <div className={classes.dropDowmCart}>
-                        <span>2 Items</span>
+                        <span>{countCartItem} Items</span>
                         <a href="!#">View Cart</a>
                       </div>
                       <ul className={classes.shoppingList}>
-                        <li>
-                          <div
-                            className={classes.remove}
-                            title="Remove this item"
-                          >
-                            <FontAwesomeIcon icon="times" />
-                          </div>
-                          <Link to="/" className={classes.cartImg} href="!#">
-                            <img
-                              src="https://via.placeholder.com/70x70"
-                              alt="!#"
-                            />
-                          </Link>
-                          <h4>
-                            <Link to="/">Woman Ring</Link>
-                          </h4>
-                          <p className={classes.quantity}>
-                            1x - <span className={classes.amount}>$99.00</span>
-                          </p>
-                        </li>
+                        {this.renderCartItem(cartItem)}
                       </ul>
                       <div className={classes.cartBottom}>
                         <div className={classes.total}>
                           <span>Total</span>
-                          <span className={classes.totalAmount}>$134.00</span>
+                          <span className={classes.totalAmount}>
+                            ${this.renderTotalAmount(cartItem)}
+                          </span>
                         </div>
                         <Link to="/" className={classes.checkOut}>
                           Checkout
@@ -250,5 +244,69 @@ class Header extends Component {
       </header>
     );
   }
+  renderTotalAmount = (cartItem) => {
+    var html = cartItem.reduce(function (tot, item) {
+      // return the sum with previous value
+      return tot + item.quantity * item.product.price;
+
+      // set initial value as 0
+    }, 0);
+
+    return html;
+  };
+
+  handleRemoveItemCart = (item) => {
+    const { cartActionsCreator } = this.props;
+    const { removeProductInCart } = cartActionsCreator;
+    removeProductInCart(item.product);
+  };
+  renderCartItem = (cartItems) => {
+    const { classes } = this.props;
+    const html = cartItems.map((item) => {
+      return (
+        <li key={item.product.id}>
+          <div
+            className={classes.remove}
+            onClick={() => this.handleRemoveItemCart(item)}
+            title="Remove this item"
+          >
+            <FontAwesomeIcon icon="times" />
+          </div>
+          <Link to="/" className={classes.cartImg} href="!#">
+            <img
+              className={classes.image}
+              src={require("../../../assets/images/products/" +
+                item.product.image_path)}
+              alt="#"
+            />
+          </Link>
+          <h4>
+            <Link to="/">{item.product.name}</Link>
+          </h4>
+          <p className={classes.quantity}>
+            {item.quantity}x -{" "}
+            <span className={classes.amount}>
+              ${item.quantity * item.product.price}
+            </span>
+          </p>
+        </li>
+      );
+    });
+    return html;
+  };
 }
-export default withStyles(styles)(Header);
+// export default withStyles(styles)(Header);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    statexx: state,
+    cartItem: state.cartItem,
+  };
+};
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    cartActionsCreator: bindActionCreators(cartActions, dispatch),
+  };
+};
+export default withStyles(styles)(
+  connect(mapStateToProps, mapDispatchToProps)(Header)
+);

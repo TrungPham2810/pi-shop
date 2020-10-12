@@ -55,21 +55,42 @@ class SideBar extends Component {
         </li>
       );
     });
-
     return html;
   };
   renderListCategory = () => {
-    const { listCategory, onClickFilter } = this.props;
+    const { listCategory, onClickFilter, filter, classes } = this.props;
+    var currentCatFilter = false;
+    if (filter["category_id"] != undefined) {
+      currentCatFilter = filter["category_id"];
+    }
+
     const html = listCategory.map((category) => {
+      var active = false;
+      if (currentCatFilter && category.id == currentCatFilter) {
+        active = "active";
+      }
       var filter = {
         label: "category",
         value: category,
       };
-      return (
-        <li onClick={() => onClickFilter(filter)} key={category.id}>
-          {category.name}
-        </li>
-      );
+
+      if (active) {
+        return (
+          <li
+            className={classes.active}
+            onClick={() => onClickFilter(filter)}
+            key={category.id}
+          >
+            {category.name}
+          </li>
+        );
+      } else {
+        return (
+          <li onClick={() => onClickFilter(filter)} key={category.id}>
+            {category.name}
+          </li>
+        );
+      }
     });
     return html;
   };

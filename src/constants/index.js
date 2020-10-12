@@ -1,3 +1,4 @@
+import React from "react";
 import Home from "../containers/Home";
 import ProductListPage from "../containers/ProductListPage";
 import Service from "../containers/Service";
@@ -40,7 +41,7 @@ export const OPTION_SORT_NUMBER = [
 export const OPTION_SORT_TYPE = [
   { value: "name", label: "Name" },
   { value: "price", label: "Price" },
-  { value: "size", label: "Size" },
+  //   { value: "size", label: "Size" },
 ];
 export const FRONTEND_ROUTES = [
   {
@@ -104,9 +105,10 @@ export const FRONTEND_ROUTES = [
     component: ContactUs,
   },
   {
-    path: "/product-detail",
+    path: "/product-detail/:id",
     name: "Product Detail",
     exact: true,
     component: ProductDetail,
+    main: ({ match }) => <ProductDetail match={match} />,
   },
 ];

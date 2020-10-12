@@ -38,7 +38,7 @@ const styles = (theme) => ({
   },
   categoryList: {
     "&>li": {
-      padding: "5px 0",
+      padding: "5px 10px",
     },
   },
   checkboxPriceList: {
@@ -50,6 +50,10 @@ const styles = (theme) => ({
     "&>li": {
       padding: "7px 0 5px 0",
     },
+  },
+  active: {
+    color: "red",
+    background: "#d9dde0",
   },
 });
 

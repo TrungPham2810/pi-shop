@@ -10,12 +10,14 @@ import {
 } from "redux-saga/effects";
 import * as productType from "../constants/product";
 import * as categoryType from "../constants/category";
-import { getList } from "../apis/product";
+import { getList, loadProduct } from "../apis/product";
 import { getListCategory } from "../apis/category";
 import { STATUS_CODE } from "../constants/index";
 import {
   fetchListProductSuccess,
   fetchListProductFalse,
+  fetchProductDetailSuccess,
+  fetchProductDetailFalse,
 } from "../actions/product";
 
 import {
@@ -37,6 +39,7 @@ function* watchFetchProductListAction({ payLoad }) {
       listProduct: data,
       filter: params,
     };
+
     yield put(fetchListProductSuccess(result));
   } else {
     // dispatch action fetchListProductFalse
@@ -46,12 +49,29 @@ function* watchFetchProductListAction({ payLoad }) {
   // }
 }
 
+function* watchFetchProductDetailAction({ payLoad }) {
+  const productId = payLoad.productId;
+  const res = yield call(loadProduct, productId);
+  const { data, status } = res;
+  if (status === STATUS_CODE.SUCCESS) {
+    // dispatch action fetchProductDetailSuccess
+    const result = {
+      currentProduct: data,
+    };
+    yield put(fetchProductDetailSuccess(result));
+  } else {
+    // dispatch action fetchProductDetailFalse
+    yield put(fetchProductDetailFalse(data));
+  }
+}
+
 function* watchFetchCategoryListAction() {
   while (true) {
     const action = yield take(categoryType.FETCH_LIST_CATEGORY);
     const { params } = action.payLoad;
     const res = yield call(getListCategory, params);
     const { data, status } = res;
+
     if (status === STATUS_CODE.SUCCESS) {
       // dispatch action fetchListCategorySuccess
       yield put(fetchListCategorySuccess(res.data));
@@ -62,9 +82,14 @@ function* watchFetchCategoryListAction() {
     yield delay(500);
   }
 }
+
 function* rootSaga() {
   // yield fork(watchFetchProductListAction);
   yield takeEvery(productType.FETCH_LIST_PRODUCT, watchFetchProductListAction);
+  yield takeEvery(
+    productType.FETCH_PRODUCT_DETAIL,
+    watchFetchProductDetailAction
+  );
   yield fork(watchFetchCategoryListAction);
 }
 

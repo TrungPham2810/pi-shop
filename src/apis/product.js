@@ -18,6 +18,10 @@ export const getList = (params = []) => {
   }
   return axiosService.get(`${API_URL}/${url}`);
 };
+
+export const loadProduct = (productId) => {
+  return axiosService.get(`${API_URL}/${url}/${productId}`);
+};
 // http://localhost/pishop/api/products      POST
 export const addProduct = (data) => {
   return axiosService.post(`${API_URL}/${url}`, data);

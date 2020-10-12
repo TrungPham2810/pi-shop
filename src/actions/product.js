@@ -26,3 +26,30 @@ export const fetchListProductFalse = (error) => {
     },
   };
 };
+
+export const fetchProductDetail = (productId) => {
+  return {
+    type: Types.FETCH_PRODUCT_DETAIL,
+    payLoad: {
+      productId,
+    },
+  };
+};
+
+export const fetchProductDetailSuccess = (data) => {
+  return {
+    type: Types.FETCH_PRODUCT_DETAIL_SUCCESS,
+    payLoad: {
+      data,
+    },
+  };
+};
+
+export const fetchProductDetailFalse = (error) => {
+  return {
+    type: Types.FETCH_PRODUCT_DETAIL_FALSE,
+    payLoad: {
+      error,
+    },
+  };
+};

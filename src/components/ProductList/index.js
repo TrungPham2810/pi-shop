@@ -18,7 +18,7 @@ class ProductList extends Component {
   };
 
   render() {
-    const { classes, listProduct } = this.props;
+    const { classes, listProduct, children } = this.props;
     const optionShorter = OPTION_SORT_NUMBER;
     const defaultShoter = optionShorter[0];
     const optionSort = OPTION_SORT_TYPE;
@@ -69,9 +69,10 @@ class ProductList extends Component {
         </div>
         <div className="row">
           <div className={classes.productList}>
-            {listProduct.map((product) => {
+            {children}
+            {/* {listProduct.map((product) => {
               return <ProductItem product={product} key={product.id} />;
-            })}
+            })} */}
             {/* <ProductItem /> */}
             {/* <ProductItem/>
 						<ProductItem/>

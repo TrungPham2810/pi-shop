@@ -10,12 +10,13 @@ const styles = (theme) => ({
     },
   },
   image: {
-    width: "100%",
+    width: "263px",
+    height: "263px",
   },
   buttonhead: {
     display: "flex",
     justifyContent: "space-between",
-    padding: "15px 0",
+    padding: "10px 0",
     background: theme.background.color.white,
     position: "absolute",
     width: "100%",
@@ -57,6 +58,12 @@ const styles = (theme) => ({
     fontSize: 12,
     fontWeight: 600,
     textTransform: "uppercase",
+    cursor: "pointer",
+    padding: "5px",
+    "&:hover": {
+      background: "#3bb3ec",
+      borderRadius: "3px",
+    },
   },
   nameProduct: {
     fontSize: 14,
