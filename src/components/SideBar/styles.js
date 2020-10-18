@@ -39,6 +39,7 @@ const styles = (theme) => ({
   categoryList: {
     "&>li": {
       padding: "5px 10px",
+      cursor: "pointer",
     },
   },
   checkboxPriceList: {

@@ -19,52 +19,54 @@ class ProductDetail extends Component {
   render() {
     const { classes, id, statexx, currentProduct } = this.props;
     const productId = this.props.match.params.id;
-    console.log(currentProduct);
-    console.log(productId);
-    return (
-      <section>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-3 ">
-              <h1>left filter</h1>
-            </div>
-            <div className="col-sm-9 padding-right">
-              <Infomation currentProduct={currentProduct} />
-
-              <div className="category-tab shop-details-tab">
-                {/* <!--category-tab--> */}
-                <div className="col-sm-12">
-                  <ul className="nav nav-tabs">
-                    <li>
-                      <a href="#details" data-toggle="tab">
-                        Details
-                      </a>
-                    </li>
-
-                    <li>
-                      <a href="#recommend_product" data-toggle="tab">
-                        You may so like
-                      </a>
-                    </li>
-                    <li className="active">
-                      <a href="#reviews" data-toggle="tab">
-                        Reviews (5)
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="tab-content">
-                  <Details currentProduct={currentProduct} />
-                  <RecommendProduct currentProduct={currentProduct} />
-                  <Review currentProduct={currentProduct} />
-                </div>
+    if (currentProduct.id != undefined) {
+      return (
+        <section>
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-3 ">
+                <h1>left filter</h1>
               </div>
-              {/* <!--/category-tab--> */}
+              <div className="col-sm-9 padding-right">
+                <Infomation currentProduct={currentProduct} />
+
+                <div className="category-tab shop-details-tab">
+                  {/* <!--category-tab--> */}
+                  <div className="col-sm-12">
+                    <ul className="nav nav-tabs">
+                      <li>
+                        <a href="#details" data-toggle="tab">
+                          Details
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#recommend_product" data-toggle="tab">
+                          You may so like
+                        </a>
+                      </li>
+                      <li className="active">
+                        <a href="#reviews" data-toggle="tab">
+                          Reviews (5)
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="tab-content">
+                    <Details currentProduct={currentProduct} />
+                    <RecommendProduct currentProduct={currentProduct} />
+                    <Review currentProduct={currentProduct} />
+                  </div>
+                </div>
+                {/* <!--/category-tab--> */}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    );
+        </section>
+      );
+    } else {
+      return "";
+    }
   }
 }
 const mapStateToProps = (state, ownProps) => {

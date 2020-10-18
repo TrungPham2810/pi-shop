@@ -8,13 +8,14 @@ class LayoutRoute extends Component {
       <Route
         path={path}
         exact={exact}
-        render={(routerProps) => {
-          return (
-            <DashBoard name={name}>
-              <YourComponent />
-            </DashBoard>
-          );
-        }}
+        component={YourComponent}
+        // render={(routerProps) => {
+        //   return (
+        //     <DashBoard name={name}>
+        //       <YourComponent />
+        //     </DashBoard>
+        //   );
+        // }}
       />
     );
   }

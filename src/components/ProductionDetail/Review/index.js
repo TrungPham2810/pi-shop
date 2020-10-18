@@ -10,20 +10,17 @@ class Review extends Component {
           <ul>
             <li>
               <a href="">
-                <i className="fa fa-user"></i>
-                EUGEN
+                <i className="fa fa-user"></i>EUGEN
               </a>
             </li>
             <li>
               <a href="">
-                <i className="fa fa-clock-o"></i>
-                12:41 PM
+                <i className="fa fa-clock-o"></i>12:41 PM
               </a>
             </li>
             <li>
               <a href="">
-                <i className="fa fa-calendar-o"></i>
-                31 DEC 2014
+                <i className="fa fa-calendar-o"></i>31 DEC 2014
               </a>
             </li>
           </ul>

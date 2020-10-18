@@ -14,15 +14,56 @@ class ProductList extends Component {
     };
   }
   handleSort = (event) => {
-    console.log(event);
+    const { onClickFilter, filter } = this.props;
+    var sort = event.value;
+    if (
+      filter["sort"] == undefined ||
+      (filter["sort"] !== undefined && filter["sort"] != sort)
+    ) {
+      var filterSort = {
+        label: "sort",
+        value: sort,
+      };
+      onClickFilter(filterSort);
+    }
+  };
+
+  handleFilterSizer = (event) => {
+    const { onClickFilter, filter } = this.props;
+    var sizer = event.value;
+    if (
+      filter["limit"] == undefined ||
+      (filter["limit"] !== undefined && filter["limit"] != sizer)
+    ) {
+      var filterLimit = {
+        label: "limit",
+        value: sizer,
+      };
+      onClickFilter(filterLimit);
+    }
   };
 
   render() {
-    const { classes, listProduct, children } = this.props;
-    const optionShorter = OPTION_SORT_NUMBER;
-    const defaultShoter = optionShorter[0];
-    const optionSort = OPTION_SORT_TYPE;
-    const defaultSort = optionSort[0];
+    const { classes, listProduct, filter } = this.props;
+
+    var optionSizer = OPTION_SORT_NUMBER;
+    var defaultSizer = optionSizer[0];
+    optionSizer.map((limit) => {
+      if (filter["limit"] !== undefined && limit["value"] == filter["limit"]) {
+        defaultSizer = limit;
+      }
+    });
+
+    var optionSort = OPTION_SORT_TYPE;
+    var defaultSort = optionSort[0];
+    optionSort.map((sortValue) => {
+      if (
+        filter["sort"] !== undefined &&
+        sortValue["value"] == filter["sort"]
+      ) {
+        defaultSort = sortValue;
+      }
+    });
     return (
       <div className="col-lg-9 col-md-8 col-12">
         <div className="row">
@@ -33,10 +74,10 @@ class ProductList extends Component {
                 <div className={classes.singleShorter}>
                   <label>Show : </label>
                   <Dropdown
-                    options={optionShorter}
+                    options={optionSizer}
                     className={classes.shorter}
-                    onChange={this.handleSortxxx}
-                    value={defaultShoter}
+                    onChange={this.handleFilterSizer}
+                    value={defaultSizer}
                     placeholderClassName="myPlaceholderClassName"
                     menuClassName={classes.myMenuClassName}
                     controlClassName={classes.myControlClassName}
@@ -49,7 +90,7 @@ class ProductList extends Component {
                   <Dropdown
                     options={optionSort}
                     className={classes.shorter}
-                    onChange={this.handleSortxxx}
+                    onChange={this.handleSort}
                     value={defaultSort}
                     placeholderClassName="myPlaceholderClassName"
                     menuClassName={classes.myMenuClassName}
@@ -59,27 +100,12 @@ class ProductList extends Component {
                   />
                 </div>
               </div>
-              {/* <ul className="view-mode">
-								<li className="active"><a href="shop-grid.html"><i className="fa fa-th-large"></i></a></li>
-								<li><a href="shop-list.html"><i className="fa fa-th-list"></i></a></li>
-							</ul> */}
             </div>
             {/* <!--/ End Shop Top --> */}
           </div>
         </div>
         <div className="row">
-          <div className={classes.productList}>
-            {children}
-            {/* {listProduct.map((product) => {
-              return <ProductItem product={product} key={product.id} />;
-            })} */}
-            {/* <ProductItem /> */}
-            {/* <ProductItem/>
-						<ProductItem/>
-						<ProductItem/>
-						<ProductItem/>
-						<ProductItem/> */}
-          </div>
+          <div className={classes.productList}>{this.props.children}</div>
         </div>
       </div>
     );
