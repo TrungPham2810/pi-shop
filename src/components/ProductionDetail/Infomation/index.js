@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import { connect } from "react-redux";
 import ReactImageMagnify from "react-image-magnify";
+import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
+import * as cartActions from "../../../actions/cart";
 import "./../../../../node_modules/slick-carousel/slick/slick.css";
 import "./../../../../node_modules/slick-carousel/slick/slick-theme.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -111,6 +115,14 @@ class Infomation extends Component {
     }
     return <Slider {...settings}>{html}</Slider>;
   };
+
+  addToCart = (product, qty) => {
+    console.log(qty);
+    console.log(product);
+    const { cartActionsCreator } = this.props;
+    const { actAddToCart } = cartActionsCreator;
+    actAddToCart(product, qty);
+  };
   render() {
     const { currentProduct, classes } = this.props;
     var instock = true;
@@ -161,7 +173,12 @@ class Infomation extends Component {
                 value={this.state.quantity}
                 onChange={this.updateQuantity}
               />
-              <div className={classes.addToCart}>
+              <div
+                className={classes.addToCart}
+                onClick={() =>
+                  this.addToCart(currentProduct, this.state.quantity)
+                }
+              >
                 <FontAwesomeIcon
                   className={classes.icon}
                   icon="shopping-cart"
@@ -191,4 +208,20 @@ class Infomation extends Component {
   }
 }
 
-export default withStyles(styles)(Infomation);
+Infomation.propsTypes = {
+  currentProduct: PropTypes.object,
+};
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    statexx: state,
+  };
+};
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    cartActionsCreator: bindActionCreators(cartActions, dispatch),
+  };
+};
+export default withStyles(styles)(
+  connect(mapStateToProps, mapDispatchToProps)(Infomation)
+);

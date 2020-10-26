@@ -36,7 +36,7 @@ class Review extends Component {
             <b>Write Your Review</b>
           </p>
 
-          <form action="#">
+          {/* <form action="#">
             <span>
               <input type="text" placeholder="Your Name" />
               <input type="email" placeholder="Email Address" />
@@ -47,7 +47,7 @@ class Review extends Component {
             <button type="button" className="btn btn-default pull-right">
               Submit
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     );

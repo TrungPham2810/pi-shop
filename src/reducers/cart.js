@@ -10,7 +10,8 @@ const reducer = (state = initialState, action) => {
     case cartConstants.ADD_TO_CART:
       index = findProductInCart(state, product);
       if (index !== -1) {
-        state[index].quantity += quantity;
+        state[index].quantity =
+          parseFloat(state[index].quantity) + parseFloat(quantity);
       } else {
         state.push({
           product,

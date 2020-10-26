@@ -17,16 +17,23 @@ const styles = (theme) => ({
     padding: 10,
     display: "inline-block",
     color: "white",
+    marginLeft: 20,
+    cursor: "pointer",
   },
   price: {
     fontSize: 30,
     fontWeight: 700,
     color: "#FE980F",
+    width: 150,
+    display: "inline-block",
   },
   inputQuantity: {
     width: 50,
     textAlign: "center",
     fontSize: 20,
+  },
+  quantity: {
+    marginRight: 5,
   },
 });
 

@@ -182,9 +182,9 @@ const styles = (theme) => ({
   },
   shoppingItem: {
     opacity: 0,
-    marginTop: 30,
+    marginTop: 20,
     position: "absolute",
-    transition: "opacity 0.3s, margin-top 0.3s",
+    transition: "opacity 1s, margin-top 0.5s",
     width: 300,
     right: 0,
     padding: "20px 25px",
